@@ -1,0 +1,14 @@
+CREATE TABLE [User_Table] (
+	[Id] INT NOT NULL IDENTITY (1000, 1),
+	[FirstName] VARCHAR(80) NOT NULL,
+	[LastName] VARCHAR(80) NOT NULL,
+	[Email] VARCHAR(100) NOT NULL,
+	[Cpf] VARCHAR(11) NOT NULL,
+
+	CONSTRAINT [Pk_User] PRIMARY KEY([Id]),
+	CONSTRAINT [UQ_Email] UNIQUE([Email])
+)
+
+CREATE NONCLUSTERED INDEX [IX_User_Email] ON [User_Table]([Email])
+
+
