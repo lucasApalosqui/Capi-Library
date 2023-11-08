@@ -1,0 +1,8 @@
+CREATE TABLE [Book_Table] (
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Title] VARCHAR(80) NOT NULL,
+	[Synopsis] VARCHAR(400) NOT NULL,
+	[Pages] INT NOT NULL,
+	[GeneralAud] VARCHAR(50) NOT NULL,
+CONSTRAINT [Pk_BookTable] PRIMARY KEY([Id])
+)
