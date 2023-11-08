@@ -1,0 +1,5 @@
+CREATE TABLE [Writer_Table] (
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Name] VARCHAR(100) NOT NULL,
+CONSTRAINT [Pk_WriterTable] PRIMARY KEY([Id])
+)
