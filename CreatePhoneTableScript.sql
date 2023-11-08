@@ -1,0 +1,7 @@
+CREATE TABLE [Phone_Table] (
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Phone] VARCHAR(11) NOT NULL,
+	[UserId] INT NOT NULL,
+CONSTRAINT [Pk_PhoneTable] PRIMARY KEY([Id]),
+CONSTRAINT [Fk_PhoneUser] FOREIGN KEY([UserId]) REFERENCES [User_Table]([Id])
+)
