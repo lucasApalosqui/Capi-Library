@@ -1,0 +1,5 @@
+CREATE TABLE [Category_Table] (
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Name] VARCHAR(80) NOT NULL,
+CONSTRAINT [Pk_CategoryTable] PRIMARY KEY([Id])
+)
