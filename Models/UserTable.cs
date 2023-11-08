@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CapiLibrary.Models
 {
     [Table("User_Table")]
-    public class User
+    public class UserTable
     {
 
         public int Id { get; set; }
