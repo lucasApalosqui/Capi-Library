@@ -24,6 +24,9 @@ namespace CapiLibrary.Screens
                 var option = short.Parse(Console.ReadLine()!);
                 switch (option)
                 {
+                    case 1:
+                        ListUserScreen.Load();
+                        break;
                     case 2:
                         CreateUserScreen.Load();
                         break;

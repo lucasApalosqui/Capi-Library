@@ -23,5 +23,20 @@ namespace CapiLibrary.Endpoints
                 Console.WriteLine("Não foi possivel Cadastrar o usuário");
             }
         }
+
+        public static IEnumerable<UserTable> GetAllUsers()
+        {
+            try
+            {
+                var repository = new Repository<UserTable>();
+                return repository.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Não foi possivel listar os Usuários erro: {e.Message}");
+                return null;
+            }
+        }
     }
 }
