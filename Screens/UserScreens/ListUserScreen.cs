@@ -47,9 +47,42 @@ namespace CapiLibrary.Screens.UserScreens
                             Load();
                             break;
                         }
-                        
+
 
                     case 2:
+                        Console.Clear();
+                        Console.WriteLine("Pesquisa por Email");
+                        MenuWrite.Dotted();
+                        Console.Write("Qual email deseja pesquisar: ");
+                        var email = Console.ReadLine();
+                        try
+                        {
+                            var user = UserEndpoint.GetByEmail(email);
+                            if (user != null)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Resultado da pesquisa");
+                                MenuWrite.Dotted();
+                                Console.WriteLine($"ID: {user.Id} | Nome: {user.FirstName} {user.LastName} | CPF: {TextMask.CpfMask(user.Cpf)}");
+                                Console.WriteLine($"Email: {user.Email} | Telefone: {user.Phone.Phone}");
+                                Console.WriteLine($"Endereço: {user.Address.Street}, {user.Address.Number}, {user.Address.Complement}, {user.Address.State}");
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Usuario não encontrado!");
+                                Console.ReadKey();
+                                Console.Clear();
+                                Load();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"não foi possivel pesquisar o email");
+                            Console.ReadKey();
+                            Console.Clear();
+                            Load();
+                        }
                         Load();
                         break;
 
