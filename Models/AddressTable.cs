@@ -15,7 +15,9 @@ namespace CapiLibrary.Models
         public string District { get; set; }
         public string State { get; set; }
         public int Number { get; set; }
-        public string Complement { get; set; }
+        public string? Complement { get; set; }
+
+        public int IdUser { get; set; }
 
     }
 }

@@ -16,7 +16,7 @@ namespace CapiLibrary.Screens.UserScreens
             Console.Clear();
             Console.WriteLine("Listar Usuários");
             MenuWrite.Dotted();
-            MenuWrite.OptionGen(new List<string> { "Listar Todos os Usuários", "Pesquisar por Email" });
+            MenuWrite.OptionGen(new List<string> { "Listar Todos os Usuários", "Pesquisar por Email", "Voltar" });
             MenuWrite.SkipLine(2);
 
             try
@@ -64,8 +64,7 @@ namespace CapiLibrary.Screens.UserScreens
                                 Console.WriteLine("Resultado da pesquisa");
                                 MenuWrite.Dotted();
                                 Console.WriteLine($"ID: {user.Id} | Nome: {user.FirstName} {user.LastName} | CPF: {TextMask.CpfMask(user.Cpf)}");
-                                Console.WriteLine($"Email: {user.Email} | Telefone: {user.Phone.Phone}");
-                                Console.WriteLine($"Endereço: {user.Address.Street}, {user.Address.Number}, {user.Address.Complement}, {user.Address.State}");
+                              
                                 Console.ReadKey();
                             }
                             else
@@ -76,6 +75,8 @@ namespace CapiLibrary.Screens.UserScreens
                                 Load();
                             }
                         }
+
+
                         catch (Exception ex)
                         {
                             Console.WriteLine($"não foi possivel pesquisar o email");
@@ -86,6 +87,10 @@ namespace CapiLibrary.Screens.UserScreens
                         Load();
                         break;
 
+                    case 3:
+                        MenuUserScreen.Load();
+                        break;
+
 
                     default:
                         Console.WriteLine("Opção inválida tente novamente");
@@ -94,6 +99,8 @@ namespace CapiLibrary.Screens.UserScreens
                         break;
                 }
             }
+            
+
             catch (Exception ex)
             {
                 Console.WriteLine("Opção inválida tente novamente");

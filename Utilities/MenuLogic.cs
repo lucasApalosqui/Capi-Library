@@ -106,7 +106,7 @@ namespace CapiLibrary.Utilities
             try
             {
                 UInt64.Parse(cpf);
-             
+
                 if (cpf.Length != 11)
                 {
                     Console.WriteLine("Quantidade de caracteres inválido");
@@ -130,5 +130,54 @@ namespace CapiLibrary.Utilities
                 return false;
             }
         }
+
+        public static bool VerifyPhone(string phone)
+        {
+            try
+            {
+                UInt64.Parse(phone);
+                if (phone.Length != 11)
+                {
+                    Console.WriteLine("Quantidade de caracteres inválido");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Campo Preenchido!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Apenas números são aceitos no campo");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+        }
+
+        public static bool VerifyNumber(string number)
+        {
+            try
+            {
+                UInt64.Parse(number);
+                Console.WriteLine("Campo Preenchido!");
+                Console.ReadKey();
+                Console.Clear();
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Apenas números são aceitos no campo");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+        }
+
     }
 }

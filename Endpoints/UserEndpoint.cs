@@ -51,24 +51,11 @@ namespace CapiLibrary.Endpoints
                     Console.WriteLine("Usuário não encontrado");
                     return null;
                 }
-
-                try
+                else
                 {
-                    AddressTable address = Database.Connection.QueryFirst<AddressTable>("SELECT * FROM [Address_Table] WHERE IdUser = @IdUser", new { IdUser = user.Id });
-
-                    PhoneTable phone = Database.Connection.QueryFirst<PhoneTable>("SELECT * FROM [Phone_Table] WHERE UserId = @UserId", new { UserId = user.Id });
-
-                    user.Address = address;
-                    user.Phone = phone;
-
                     return user;
                 }
-                catch (Exception ex)
-                {
-                  
-                    return null;
-                }
-                
+
 
             }
             catch (Exception ex)
