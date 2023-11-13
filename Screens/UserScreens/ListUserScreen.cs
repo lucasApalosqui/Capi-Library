@@ -58,11 +58,12 @@ namespace CapiLibrary.Screens.UserScreens
                         try
                         {
                             var user = UserEndpoint.GetByEmail(email);
-                            var address = AddressEndpoint.GetByUserEmail(email);
-                            var phone = PhoneEndpoint.GetByUserEmail(email);
+                            
 
                             if (user != null)
                             {
+                                var address = AddressEndpoint.GetByUserEmail(email);
+                                var phone = PhoneEndpoint.GetByUserEmail(email);
                                 Console.Clear();
                                 Console.WriteLine("Resultado da pesquisa");
                                 MenuWrite.Dotted();
