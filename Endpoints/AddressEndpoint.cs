@@ -1,5 +1,6 @@
 ﻿using CapiLibrary.Models;
 using CapiLibrary.Repositories;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,22 @@ namespace CapiLibrary.Endpoints
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao cadastrar o Endereço: {ex.Message}");
+            }
+        }
+
+        public static AddressTable GetByUserEmail(string email)
+        {
+            try
+            {
+                var user = UserEndpoint.GetByEmail(email);
+                AddressTable address = Database.Connection.QueryFirst<AddressTable>("SELECT * FROM [Address_Table] WHERE IdUser = @IdUser", new { IdUser = user.Id });
+                return address;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Endereço não encontrado: {ex.Message}");
+                return null;
             }
         }
 

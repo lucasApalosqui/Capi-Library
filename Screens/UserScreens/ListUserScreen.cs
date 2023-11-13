@@ -58,13 +58,37 @@ namespace CapiLibrary.Screens.UserScreens
                         try
                         {
                             var user = UserEndpoint.GetByEmail(email);
+                            var address = AddressEndpoint.GetByUserEmail(email);
+                            var phone = PhoneEndpoint.GetByUserEmail(email);
+
                             if (user != null)
                             {
                                 Console.Clear();
                                 Console.WriteLine("Resultado da pesquisa");
                                 MenuWrite.Dotted();
                                 Console.WriteLine($"ID: {user.Id} | Nome: {user.FirstName} {user.LastName} | CPF: {TextMask.CpfMask(user.Cpf)}");
-                              
+                                MenuWrite.SkipLine(1);
+                                if (address == null)
+                                {
+                                    Console.WriteLine("Sem endereço cadastrado");
+                                }
+                                if (phone == null)
+                                {
+                                    Console.WriteLine("Sem Telefone cadastrado");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Endereço");
+                                    Console.WriteLine($"{address.Street}, N°{address.Number}, {address.District}, {address.State}");
+                                    if (address.Complement != null)
+                                    {
+                                        Console.Write($"Complemento: {address.Complement}");
+                                    }
+                                    MenuWrite.SkipLine(1);
+                                    Console.WriteLine($"Telefone: {TextMask.NumberMask(phone.Phone)}");
+
+                                }
+
                                 Console.ReadKey();
                             }
                             else

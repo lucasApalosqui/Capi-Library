@@ -71,6 +71,7 @@ namespace CapiLibrary.Utilities.InsertsVerify
                 case 1:
                     while (veri == false)
                     {
+                        Console.Write("Informe o complemento: ");
                         complement = Console.ReadLine();
                         veri = MenuLogic.VerifyWord(complement, true);
 

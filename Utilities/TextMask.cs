@@ -12,5 +12,10 @@ namespace CapiLibrary.Utilities
         {
             return Convert.ToUInt64(cpf).ToString(@"000\.000\.000\-00");
         }
+
+        public static string NumberMask(string number)
+        {
+            return string.Format("{0:(##) #####-####}", long.Parse(number));
+        }
     }
 }
