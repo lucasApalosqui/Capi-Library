@@ -27,6 +27,7 @@ namespace CapiLibrary.Screens.UserScreens
                     Load();
                 }
                 Console.WriteLine($"Deseja mesmo deletar o usuário: {user.FirstName} {user.LastName}");
+                MenuWrite.SkipLine(1);
                 Console.WriteLine("1 - Sim");
                 Console.WriteLine("2 - Não");
                 var option = short.Parse(Console.ReadLine()!);

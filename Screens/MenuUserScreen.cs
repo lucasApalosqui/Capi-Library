@@ -30,7 +30,9 @@ namespace CapiLibrary.Screens
                     case 2:
                         CreateUserScreen.Load();
                         break;
-
+                    case 3:
+                        UpdateUserScreen.Load();
+                        break;
                     case 4:
                         DeleteUserScreen.Load();
                         break;
