@@ -31,6 +31,9 @@ namespace CapiLibrary.Screens
                         CreateUserScreen.Load();
                         break;
 
+                    case 4:
+                        DeleteUserScreen.Load();
+                        break;
 
                     case 5:
                         MainMenuScreen.Load();

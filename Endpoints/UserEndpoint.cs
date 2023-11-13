@@ -66,7 +66,34 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static void DeleteUser(UserTable user)
+        {
+            try
+            {
 
-       
+                var address = AddressEndpoint.GetByUserEmail(user.Email);
+                var phone = PhoneEndpoint.GetByUserEmail(user.Email);
+
+                if (address != null)
+                {
+                    AddressEndpoint.DeleteAddress(address);
+                }
+                if (phone != null)
+                {
+                    PhoneEndpoint.DeletePhone(phone);
+                }
+                Repository<UserTable> repo = new Repository<UserTable>();
+                repo.Delete(user.Id);
+
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+
+
     }
 }

@@ -49,5 +49,18 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static void DeleteAddress(AddressTable address)
+        {
+            try
+            {
+                Repository<AddressTable> repo = new Repository<AddressTable>();
+                repo.Delete(address.Id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

@@ -41,5 +41,17 @@ namespace CapiLibrary.Endpoints
                 return null;
             }
         }
+        public static void DeletePhone(PhoneTable phone)
+        {
+            try
+            {
+                Repository<PhoneTable> repo = new Repository<PhoneTable>();
+                repo.Delete(phone.Id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
