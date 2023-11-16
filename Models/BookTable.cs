@@ -10,8 +10,6 @@ namespace CapiLibrary.Models
     [Table("Book_Table")]
     public class BookTable
     {
-        public BookTable()
-            => Categories = new List<CategoryTable>();
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -19,9 +17,6 @@ namespace CapiLibrary.Models
         public int Pages { get; set; }
         public string GeneralAud { get; set; }
 
-
-        [Write(false)]
-        public List<CategoryTable> Categories { get; set; }
 
     }
 }
