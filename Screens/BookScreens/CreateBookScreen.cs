@@ -54,6 +54,30 @@ namespace CapiLibrary.Screens.BookScreens
                 }
             }
 
+            AddWriter(book);
+
+            veri = false;
+            while (veri == false)
+            {
+                Console.WriteLine("Deseja cadastrar mais um Autor?");
+                Console.WriteLine("1 - Sim");
+                Console.WriteLine("2 - Não");
+                var option = short.Parse(Console.ReadLine()!);
+                switch (option)
+                {
+                    case 1:
+                        AddWriter(book);
+                        veri = false;
+                        break;
+                    case 2:
+                        veri = true;
+                        break;
+                    default:
+                        veri = false;
+                        break;
+                }
+            }
+
 
 
             Console.Clear();
@@ -63,12 +87,25 @@ namespace CapiLibrary.Screens.BookScreens
         }
         public static void AddCategory(BookTable book)
         {
+            Console.Clear();
             string categoryName = "";
             bool veri = false;
             Console.Clear();
             categoryName = CategoryDataVerify.NameVerify(categoryName);
             var category = CategoryEndpoint.Create(categoryName);
             CategoryBookEndpoint.Create(book, category);
+        }
+
+        public static void AddWriter(BookTable book)
+        {
+            Console.Clear();
+            string writerName = "";
+            bool veri = false;
+            Console.Clear();
+            writerName = WriterDataVerify.Name(writerName);
+            var writerN = WriterEndpoint.Create(writerName);
+            WriterBookEndpoint.Create(book, writerN);
+
         }
     }
 }

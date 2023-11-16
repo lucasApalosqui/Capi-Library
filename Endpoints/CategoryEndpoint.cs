@@ -71,6 +71,7 @@ namespace CapiLibrary.Endpoints
         {
             try
             {
+                name = name.ToLower();
                 CategoryTable cate = Database.Connection.QueryFirst<CategoryTable>("SELECT * FROM [Category_Table] WHERE Name = @Name", new { Name = name });
                 if (cate == null)
                 {
@@ -83,7 +84,7 @@ namespace CapiLibrary.Endpoints
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Nome não encontrado {name}");
+                
                 return null;
             }
         }
