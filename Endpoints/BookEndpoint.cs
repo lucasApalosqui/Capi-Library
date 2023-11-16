@@ -30,5 +30,35 @@ namespace CapiLibrary.Endpoints
                 return null;
             }
         }
+
+        public static BookTable GetById(int id)
+        {
+            try
+            {
+                Repository<BookTable> repo = new Repository<BookTable>();
+                return repo.GetById(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static void Delete(BookTable book)
+        {
+            try
+            {
+                Repository<BookTable> bookRepo = new Repository<BookTable>();
+                WriterBookEndpoint.DeleteByBookId(book.Id);
+                CategoryBookEndpoint.DeleteByBookId(book.Id);
+                bookRepo.Delete(book.Id);
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
 }

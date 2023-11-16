@@ -35,7 +35,7 @@ namespace CapiLibrary.Screens
                         //UpdateUserScreen.Load();
                         break;
                     case 4:
-                        //DeleteUserScreen.Load();
+                        DeleteBookScreen.Load();
                         break;
 
                     case 5:

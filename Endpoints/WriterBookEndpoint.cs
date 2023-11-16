@@ -1,5 +1,6 @@
 ﻿using CapiLibrary.Models;
 using CapiLibrary.Repositories;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,24 @@ namespace CapiLibrary.Endpoints
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        public static void DeleteByBookId(int id)
+        {
+            try
+            {
+                Repository<BookWriterTable> writerRepo = new Repository<BookWriterTable>();
+                BookWriterTable bookW = Database.Connection.QueryFirst<BookWriterTable>("SELECT * FROM [BookWriter_Table] WHERE IdBook = @IdBook", new { IdBook = id });
+                if (bookW != null)
+                {
+                    Database.Connection.Execute("DELETE [BookWriter_Table] WHERE IdBook = @IdBook", new { IdBook = bookW.IdBook });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
             }
         }
     }
