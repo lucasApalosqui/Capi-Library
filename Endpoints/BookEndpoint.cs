@@ -52,12 +52,26 @@ namespace CapiLibrary.Endpoints
                 WriterBookEndpoint.DeleteByBookId(book.Id);
                 CategoryBookEndpoint.DeleteByBookId(book.Id);
                 bookRepo.Delete(book.Id);
-                
+
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+
+        public static IEnumerable<BookTable> GetAllBooks()
+        {
+            try
+            {
+                Repository<BookTable> repoB = new Repository<BookTable>();
+                return repoB.GetAll();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
         }
     }

@@ -1,5 +1,5 @@
-﻿using CapiLibrary.Screens.BookScreens;
-using CapiLibrary.Screens.UserScreens;
+﻿using CapiLibrary.Endpoints;
+using CapiLibrary.Logics.BookLogic;
 using CapiLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapiLibrary.Screens
+namespace CapiLibrary.Screens.BookScreens
 {
-    public static class MenuBookScreen
+    public static class ListBookScreen
     {
         public static void Load()
         {
             Console.Clear();
-            Console.WriteLine("Gestão de Livros");
+            Console.WriteLine("Visualizar Livros");
             MenuWrite.Dotted();
-            MenuWrite.OptionGen(new List<string> { "Ver Livros", "Adicionar Livros", "Atualizar Livros", "Deletar Livros", "Voltar" });
+            MenuWrite.OptionGen(new List<string> { "Todos os livros", "Livros por Classificação", "Livros por autor", "Livros por categoria", "Livro por Id", "Livros Por Nome", "Voltar" });
             MenuWrite.SkipLine(2);
-
             try
             {
                 Console.Write("Selecione a opção: ");
@@ -26,20 +25,7 @@ namespace CapiLibrary.Screens
                 switch (option)
                 {
                     case 1:
-                        ListBookScreen.Load();
-                        break;
-                    case 2:
-                        CreateBookScreen.Load();
-                        break;
-                    case 3:
-                        //UpdateUserScreen.Load();
-                        break;
-                    case 4:
-                        DeleteBookScreen.Load();
-                        break;
-
-                    case 5:
-                        MainMenuScreen.Load();
+                        ListBookLogic.ListAllBooks();
                         break;
 
                     default:

@@ -50,5 +50,26 @@ namespace CapiLibrary.Endpoints
                 return null;
             }
         }
+
+        public static IEnumerable<WriterTable> GetWritersByBookId(int id)
+        {
+            try
+            {
+                var query = @"SELECT [Writer_Table].Name, [Writer_Table].Id
+                              FROM (([BookWriter_Table]
+                              INNER JOIN [Writer_Table] ON [BookWriter_Table].IdWriter = [Writer_Table].Id)
+                              INNER JOIN [Book_Table] ON [BookWriter_Table].IdWriter = [Book_Table].Id)
+                              WHERE [BookWriter_Table].IdBook = @IdBook";
+                var writers = Database.Connection.Query<WriterTable>(query, new { IdBook = id });
+
+                return writers;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

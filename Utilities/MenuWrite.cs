@@ -8,6 +8,12 @@ namespace CapiLibrary.Utilities
 {
     public static class MenuWrite
     {
+        public static void ColorP(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(text);
+            Console.ResetColor();
+        }
         public static void Dotted()
         {
             Console.WriteLine("-----------------");

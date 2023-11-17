@@ -26,8 +26,8 @@ namespace CapiLibrary.Endpoints
             {
                 return cat;
             }
-           
-            
+
+
         }
 
         public static void GetAll()
@@ -84,7 +84,28 @@ namespace CapiLibrary.Endpoints
             }
             catch (Exception ex)
             {
-                
+
+                return null;
+            }
+        }
+
+        public static IEnumerable<CategoryTable> GetCategoriesByBookId(int id)
+        {
+            try
+            {
+                var query = @"SELECT [Category_Table].Name, [Category_Table].Id
+                              FROM (([BookCategory_Table]
+                              INNER JOIN [Category_Table] ON [BookCategory_Table].IdCategory = [Category_Table].Id)
+                              INNER JOIN [Book_Table] ON [BookCategory_Table].IdBook = [Book_Table].Id)
+                              WHERE [BookCategory_Table].IdBook = @IdBook";
+                var categories = Database.Connection.Query<CategoryTable>(query, new { IdBook = id });
+
+                return categories;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
