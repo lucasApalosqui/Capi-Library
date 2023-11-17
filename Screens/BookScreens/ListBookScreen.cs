@@ -30,6 +30,9 @@ namespace CapiLibrary.Screens.BookScreens
                     case 2:
                         ListBookLogic.ListPerGeneralAud();
                         break;
+                    case 3:
+                        ListBookLogic.ListByWriter();
+                        break;
                     default:
                         Console.WriteLine("Opção inválida tente novamente");
                         Console.ReadKey();

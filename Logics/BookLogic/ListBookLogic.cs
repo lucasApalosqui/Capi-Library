@@ -111,10 +111,37 @@ namespace CapiLibrary.Logics.BookLogic
                 {
                     Console.Write(" Nenhum");
                 }
-                
+
 
                 Console.WriteLine();
             }
+        }
+
+        public static void ListByWriter()
+        {
+            Console.Clear();
+            Console.WriteLine("Livros por autor");
+            MenuWrite.Dotted();
+            Console.Write("Informe o nome do autor que deseja pesquisar: ");
+            string name = Console.ReadLine();
+            var writer = WriterEndpoint.GetWriterByName(name);
+            if (writer == null)
+            {
+                Console.WriteLine($"Nenhum autor com o nome {name} Encontrado");
+                Console.ReadKey();
+                ListBookScreen.Load();
+            }
+            var books = BookEndpoint.GetByWriterId(writer.Id);
+            if (books.Count<BookTable>() == 0)
+            {
+                Console.WriteLine($"Nenhum Livro com o autor {writer.Name} encontrado");
+            }
+            else
+            {
+                ListBooks(books);
+            }
+            Console.ReadKey();
+            ListBookScreen.Load();
         }
     }
 }

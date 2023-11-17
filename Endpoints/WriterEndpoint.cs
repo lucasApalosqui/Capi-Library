@@ -67,7 +67,25 @@ namespace CapiLibrary.Endpoints
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                
+                return null;
+            }
+        }
+
+        public static WriterTable GetWriterByName(string name)
+        {
+            try
+            {
+                var Query = @"SELECT * FROM [Writer_Table] 
+                              WHERE [Writer_Table].Name = @Name";
+                name = name.ToLower();
+                var writer = Database.Connection.QueryFirst<WriterTable>(Query, new { Name = name});
+
+                return writer;
+            }
+            catch (Exception ex)
+            {
+                
                 return null;
             }
         }
