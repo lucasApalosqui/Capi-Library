@@ -143,5 +143,32 @@ namespace CapiLibrary.Logics.BookLogic
             Console.ReadKey();
             ListBookScreen.Load();
         }
+
+        public static void ListByCategory()
+        {
+            Console.Clear();
+            Console.WriteLine("Livros por Categoria");
+            MenuWrite.Dotted();
+            Console.Write("Informe o nome da categoria que deseja pesquisar: ");
+            string name = Console.ReadLine();
+            var category = CategoryEndpoint.GetCategoryByName(name);
+            if (category == null)
+            {
+                Console.WriteLine($"Nenhuma Categoria com o nome {name} Encontrada");
+                Console.ReadKey();
+                ListBookScreen.Load();
+            }
+            var books = BookEndpoint.GetByCategoryId(category.Id);
+            if (books.Count<BookTable>() == 0)
+            {
+                Console.WriteLine($"Nenhum Livro com a categoria {category.Name} encontrada");
+            }
+            else
+            {
+                ListBooks(books);
+            }
+            Console.ReadKey();
+            ListBookScreen.Load();
+        }
     }
 }

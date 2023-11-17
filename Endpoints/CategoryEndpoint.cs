@@ -109,5 +109,23 @@ namespace CapiLibrary.Endpoints
                 return null;
             }
         }
+
+        public static CategoryTable GetCategoryByName(string name)
+        {
+            try
+            {
+                var Query = @"SELECT * FROM [Category_Table] 
+                              WHERE [Category_Table].Name = @Name";
+                name = name.ToLower();
+                var category = Database.Connection.QueryFirst<CategoryTable>(Query, new { Name = name });
+
+                return category;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
     }
 }

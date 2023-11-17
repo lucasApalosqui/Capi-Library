@@ -99,9 +99,29 @@ namespace CapiLibrary.Endpoints
                 var query = @"SELECT [Book_Table].*
                               FROM (([BookWriter_Table]
                               INNER JOIN [Writer_Table] ON [BookWriter_Table].IdWriter = [Writer_Table].Id)
-                              INNER JOIN [Book_Table] ON [BookWriter_Table].IdWriter = [Book_Table].Id)
+                              INNER JOIN [Book_Table] ON [BookWriter_Table].IdBook = [Book_Table].Id)
                               WHERE [BookWriter_Table].IdWriter = @IdWriter";
                 var books = Database.Connection.Query<BookTable>(query, new { IdWriter = id });
+
+                return books;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public static IEnumerable<BookTable> GetByCategoryId(int id)
+        {
+            try
+            {
+                var query = @"SELECT [Book_Table].*
+                              FROM (([BookCategory_Table]
+                              INNER JOIN [Category_Table] ON [BookCategory_Table].IdCategory = [Category_Table].Id)
+                              INNER JOIN [Book_Table] ON [BookCategory_Table].IdBook = [Book_Table].Id)
+                              WHERE [BookCategory_Table].IdCategory = @IdCategory";
+                var books = Database.Connection.Query<BookTable>(query, new { IdCategory = id });
 
                 return books;
             }
