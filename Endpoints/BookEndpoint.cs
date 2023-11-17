@@ -1,5 +1,6 @@
 ﻿using CapiLibrary.Models;
 using CapiLibrary.Repositories;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,22 @@ namespace CapiLibrary.Endpoints
             {
                 Repository<BookTable> repoB = new Repository<BookTable>();
                 return repoB.GetAll();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public static IEnumerable<BookTable> GetByGeneralAud(string generalAud)
+        {
+            try
+            {
+                var query = @"SELECT * FROM [Book_Table]
+                              WHERE [Book_Table].GeneralAud = @GeneralAud";
+                var books = Database.Connection.Query<BookTable>(query, new { GeneralAud = generalAud });
+                return books;
             }
             catch (Exception ex)
             {
