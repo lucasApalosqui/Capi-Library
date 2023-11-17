@@ -117,6 +117,45 @@ namespace CapiLibrary.Logics.BookLogic
             }
         }
 
+        public static void ListBooks(BookTable book)
+        {
+            
+            MenuWrite.ColorP("Id "); Console.Write(book.Id);
+            MenuWrite.ColorP(" Título "); Console.Write(book.Title);
+            MenuWrite.ColorP(" Páginas "); Console.Write(book.Pages);
+            MenuWrite.ColorP(" Classificação "); Console.Write(book.GeneralAud);
+            MenuWrite.ColorP(" Categoria ");
+
+
+            var categories = CategoryEndpoint.GetCategoriesByBookId(book.Id);
+            int nume = 0;
+            foreach (var category in categories)
+            {
+                Console.Write($"{category.Name}");
+                Console.Write(" | ");
+                nume++;
+            }
+            if (nume == 0)
+            {
+                Console.Write(" Nenhum");
+            }
+            MenuWrite.ColorP(" Autores ");
+            var writers = WriterEndpoint.GetWritersByBookId(book.Id);
+            nume = 0;
+            foreach (var writer in writers)
+            {
+                Console.Write($"{writer.Name}");
+                Console.Write(" | ");
+                nume++;
+            }
+            if (nume == 0)
+            {
+                Console.Write(" Nenhum");
+            }
+            Console.WriteLine();
+
+        }
+
         public static void ListByWriter()
         {
             Console.Clear();
@@ -169,6 +208,27 @@ namespace CapiLibrary.Logics.BookLogic
             }
             Console.ReadKey();
             ListBookScreen.Load();
+        }
+
+        public static void ListById()
+        {
+            Console.Clear();
+            Console.WriteLine("Livro por Id");
+            MenuWrite.Dotted();
+            Console.Write("Informe o Id que deseja pesquisar: ");
+            string id = Console.ReadLine();
+            var book = BookEndpoint.GetById(short.Parse(id));
+            if (book == null)
+            {
+                Console.WriteLine("Id Não Encontrado");
+                Console.ReadKey();
+                ListBookScreen.Load();
+            }
+            ListBooks(book);
+            Console.ReadKey();
+            ListBookScreen.Load();
+
+
         }
     }
 }
