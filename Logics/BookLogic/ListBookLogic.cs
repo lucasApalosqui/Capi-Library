@@ -2,6 +2,7 @@
 using CapiLibrary.Models;
 using CapiLibrary.Screens.BookScreens;
 using CapiLibrary.Utilities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -228,6 +229,31 @@ namespace CapiLibrary.Logics.BookLogic
             Console.ReadKey();
             ListBookScreen.Load();
 
+        }
+
+        public static void ListByTitle()
+        {
+            Console.Clear();
+            Console.WriteLine("Livro por Titulo");
+            MenuWrite.Dotted();
+            Console.Write("Escreva o Titulo do livro que deseja procurar: ");
+            string title = Console.ReadLine();
+            if (title.IsNullOrEmpty())
+            {
+                Console.WriteLine("Nenhum Livro encontrado");
+                Console.ReadKey();
+                ListBookScreen.Load();
+            }
+            var books = BookEndpoint.GetByTitle(title);
+            if (books.Count<BookTable>() == 0)
+            {
+                Console.WriteLine("Nenhum Livro encontrado");
+                Console.ReadKey();
+                ListBookScreen.Load();
+            }
+            ListBooks(books);
+            Console.ReadKey();
+            ListBookScreen.Load();
 
         }
     }

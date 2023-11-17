@@ -132,6 +132,23 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static IEnumerable<BookTable> GetByTitle(string title)
+        {
+            try
+            {
+                var query = @"SELECT * FROM [Book_Table]
+                              WHERE [Book_Table].Title
+                              LIKE @Title";
+                var books = Database.Connection.Query<BookTable>(query, new {Title = "%" + title + "%"});
+                return books;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
 
     }
 }
