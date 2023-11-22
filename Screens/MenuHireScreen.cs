@@ -1,4 +1,6 @@
-﻿using CapiLibrary.Utilities;
+﻿using CapiLibrary.Screens.HireScreens;
+using CapiLibrary.Screens.UserScreens;
+using CapiLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace CapiLibrary.Screens
 {
-    public static class MainMenuScreen
+    public static class MenuHireScreen
     {
         public static void Load()
         {
             Console.Clear();
-            Console.WriteLine("Capi Library");
+            Console.WriteLine("Gestão de Locações");
             MenuWrite.Dotted();
-            MenuWrite.OptionGen(new List<string> { "Gestão de Usuários", "Gestão de locações", "Gestão de livros", "Sair"});
+            MenuWrite.OptionGen(new List<string> { "Ver locações", "Criar Locações", "Excluir Locações",  "Voltar" });
             MenuWrite.SkipLine(2);
-
             try
             {
                 Console.Write("Selecione a opção: ");
@@ -24,16 +25,17 @@ namespace CapiLibrary.Screens
                 switch (option)
                 {
                     case 1:
-                        MenuUserScreen.Load();
+                        //ListHireScreen.Load();
                         break;
                     case 2:
-                        MenuHireScreen.Load();
+                        CreateHireScreen.Load();
                         break;
-
                     case 3:
-                        MenuBookScreen.Load();
+                        //DeleteHireScreen.Load();
                         break;
-
+                    case 4:
+                        MainMenuScreen.Load();
+                        break;
                     default:
                         Console.WriteLine("Opção inválida tente novamente");
                         Console.ReadKey();
@@ -48,5 +50,6 @@ namespace CapiLibrary.Screens
                 Load();
             }
         }
+
     }
 }
