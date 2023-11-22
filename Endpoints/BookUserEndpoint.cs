@@ -25,6 +25,19 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static void DeleteByUser(UserTable user)
+        {
+            try
+            {
+                var query = "DELETE [UserBook_Table] WHERE IdUser = @IdUser";
+                Database.Connection.Execute(query, new {IdUser = user.Id});
+            }
+            catch
+            {
+                
+            }
+        }
+
         public static IEnumerable<UserBookTable> GetAll()
         {
             try

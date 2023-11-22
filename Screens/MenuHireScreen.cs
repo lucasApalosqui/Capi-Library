@@ -31,7 +31,7 @@ namespace CapiLibrary.Screens
                         CreateHireScreen.Load();
                         break;
                     case 3:
-                        //DeleteHireScreen.Load();
+                        DeleteHireScreen.Load();
                         break;
                     case 4:
                         MainMenuScreen.Load();
