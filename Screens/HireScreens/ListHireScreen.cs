@@ -1,5 +1,4 @@
-﻿using CapiLibrary.Screens.HireScreens;
-using CapiLibrary.Screens.UserScreens;
+﻿using CapiLibrary.Logics.HireLogic;
 using CapiLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -7,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapiLibrary.Screens
+namespace CapiLibrary.Screens.HireScreens
 {
-    public static class MenuHireScreen
+    public static class ListHireScreen
     {
         public static void Load()
         {
             Console.Clear();
-            Console.WriteLine("Gestão de Locações");
+            Console.WriteLine("Listar Locações");
             MenuWrite.Dotted();
-            MenuWrite.OptionGen(new List<string> { "Ver locações", "Criar Locações", "Excluir Locações",  "Voltar" });
+            MenuWrite.OptionGen(new List<string> { "Ver Todas as Locações", "Pesquisar por Livro", "Pesquisar por Usuário", "Voltar" });
             MenuWrite.SkipLine(2);
             try
             {
@@ -25,31 +24,26 @@ namespace CapiLibrary.Screens
                 switch (option)
                 {
                     case 1:
-                        ListHireScreen.Load();
+                        ListHireLogic.ListAllHire();
                         break;
                     case 2:
-                        CreateHireScreen.Load();
-                        break;
-                    case 3:
-                        //DeleteHireScreen.Load();
                         break;
                     case 4:
-                        MainMenuScreen.Load();
+                        MenuHireScreen.Load();
                         break;
                     default:
-                        Console.WriteLine("Opção inválida tente novamente");
+                        Console.WriteLine("Opção inválida");
                         Console.ReadKey();
                         Load();
                         break;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 Console.WriteLine("Opção inválida tente novamente");
                 Console.ReadKey();
                 Load();
             }
         }
-
     }
 }

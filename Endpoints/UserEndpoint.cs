@@ -26,6 +26,19 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static UserTable GetById(int id)
+        {
+            try
+            {
+                Repository<UserTable> repository = new Repository<UserTable>();
+                return repository.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public static IEnumerable<UserTable> GetAllUsers()
         {
             try

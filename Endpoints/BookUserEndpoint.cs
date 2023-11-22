@@ -25,6 +25,20 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static IEnumerable<UserBookTable> GetAll()
+        {
+            try
+            {
+                var query = "SELECT * FROM [UserBook_Table]";
+                var hires = Database.Connection.Query<UserBookTable>(query);
+                return hires;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public static UserBookTable GetByIdUser(int idUser)
         {
             try
