@@ -30,6 +30,8 @@ namespace CapiLibrary.Endpoints
 
         }
 
+        
+
         public static void GetAll()
         {
             try

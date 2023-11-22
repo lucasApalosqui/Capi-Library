@@ -26,6 +26,24 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static void DeleteByWriterAndBookId(int Wid, int Bid)
+        {
+            try
+            {
+                Repository<BookWriterTable> writerRepo = new Repository<BookWriterTable>();
+                BookWriterTable bookW = Database.Connection.QueryFirst<BookWriterTable>("SELECT * FROM [BookWriter_Table] WHERE IdBook = @IdBook AND IdWriter = @IdWriter", new { IdBook = Bid, IdWriter = Wid });
+                if (bookW != null)
+                {
+                    Database.Connection.Execute("DELETE [BookWriter_Table] WHERE IdBook = @IdBook AND IdWriter = @IdWriter", new { IdBook = bookW.IdBook, IdWriter = bookW.IdWriter });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
+        }
+
         public static void DeleteByBookId(int id)
         {
             try
