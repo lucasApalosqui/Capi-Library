@@ -1,5 +1,6 @@
 ﻿using CapiLibrary.Endpoints;
 using CapiLibrary.Screens;
+using CapiLibrary.Screens.HireScreens;
 using CapiLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,44 @@ namespace CapiLibrary.Logics.HireLogic
             }
             Console.ReadKey();
             MenuHireScreen.Load();
+
+        }
+
+        public static void ListByBook()
+        {
+            Console.Clear();
+            Console.WriteLine("Todas as Locações");
+            MenuWrite.Dotted();
+            Console.Write("Qual o Id do livro que deseja pesquisar: ");
+            int id = short.Parse(Console.ReadLine());
+            var book = BookEndpoint.GetById(id);
+            if (book == null)
+            {
+                Console.WriteLine("Livro Não Encontrado!");
+                Console.ReadKey();
+                ListHireScreen.Load();
+            }
+            var hires = BookUserEndpoint.GetByBook(book);
+            if (hires != null)
+            {
+                foreach (var hire in hires)
+                {
+                    var user = UserEndpoint.GetById(hire.IdUser);
+                    Console.WriteLine($"Usuário: {user.Email} Livro: {book.Title}");
+                    Console.WriteLine($"Data de Locação {hire.GetDate.ToString("dd/MM/yyyy")} Data de Retorno {hire.ReturnDate.ToString("dd/MM/yyyy")}");
+                    MenuWrite.Dotted();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nenhuma Locação Ativa!");
+                Console.ReadKey();
+                MenuHireScreen.Load();
+            }
+            Console.ReadKey();
+            MenuHireScreen.Load();
+
+
 
         }
     }

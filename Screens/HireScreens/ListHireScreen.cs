@@ -27,6 +27,7 @@ namespace CapiLibrary.Screens.HireScreens
                         ListHireLogic.ListAllHire();
                         break;
                     case 2:
+                        ListHireLogic.ListByBook();
                         break;
                     case 4:
                         MenuHireScreen.Load();

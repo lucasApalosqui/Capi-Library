@@ -39,6 +39,19 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static IEnumerable<UserBookTable> GetByBook(BookTable book)
+        {
+            try
+            {
+                var query = "SELECT * FROM [UserBook_Table] WHERE IdBook = @IdBook";
+                return Database.Connection.Query<UserBookTable>(query, new {IdBook = book.Id});
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public static UserBookTable GetByIdUser(int idUser)
         {
             try
