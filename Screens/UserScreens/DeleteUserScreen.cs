@@ -36,6 +36,7 @@ namespace CapiLibrary.Screens.UserScreens
                 switch (option)
                 {
                     case 1:
+                        BookUserEndpoint.DeleteByUser(user);
                         UserEndpoint.DeleteUser(user);
                         Console.WriteLine("Usuário Deletado com sucesso!");
                         Console.ReadKey();

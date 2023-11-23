@@ -38,6 +38,19 @@ namespace CapiLibrary.Endpoints
             }
         }
 
+        public static void DeleteByBook(BookTable book)
+        {
+            try
+            {
+                var query = "DELETE [UserBook_Table] WHERE IdBook = @IdBook";
+                Database.Connection.Execute(query, new { IdBook = book.Id });
+            }
+            catch
+            {
+
+            }
+        }
+
         public static IEnumerable<UserBookTable> GetAll()
         {
             try

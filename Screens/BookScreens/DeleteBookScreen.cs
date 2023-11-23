@@ -36,6 +36,7 @@ namespace CapiLibrary.Screens.BookScreens
                     switch (option)
                     {
                         case 1:
+                            BookUserEndpoint.DeleteByBook(book);
                             BookEndpoint.Delete(book);
                             Console.WriteLine("Livro Deletado com sucesso!");
                             Console.ReadKey();
